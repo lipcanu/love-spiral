@@ -1,0 +1,130 @@
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: none;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+#chart{
+  float: left;
+  display: inline-block;
+}
+
+#map {
+  width: 780px;
+  float: right;
+  display: inline-block;
+}
+.city-label {
+  font-family: Arvo;
+  fill: #f5cba0;
+  font-size: 20px;
+  font-weight: 700;
+  text-anchor: middle;
+
+}
+
+.labels {
+  fill: black;
+  font-weight: 300;
+  display: block;
+  font-size: 40pt;
+}
+.labels.segment {
+  font-size: 10px;
+  font-family: Arvo;
+  font-weight: 300;
+}
+
+.notVisible{
+  display: none;
+}
+
+.day{
+font-family: Arvo;
+font-weight: 700;
+font-size: 50pt;
+position: absolute;
+z-index: 3;
+color: #413E4A;
+
+}
+.about{
+  z-index: 3;
+  position: absolute;
+}
+a, a:hover{
+    color: #b1475e;
+}
+.about a{
+  font-size: 30px;
+  font-family: Arvo;
+  font-weight: 300;
+  color: #b1475e;
+
+}
+
+.extraCharts{
+  margin-top: 2em;
+}
+
+h1{
+   font-size: 30px;
+  font-family: Arvo;
+  font-weight: 300;
+  margin-top: 60px;
+  color: #413E4A;
+
+}
+
+h1 span{
+  font-size: 50px;
+}
+h2{
+  font-size: 20px;
+  font-family: Arvo;
+  font-weight: 300;
+  margin-bottom: 1em;
+
+}
+
+text, p, li{
+  font-family: Arvo;
+}
+
+.together{
+  color: #b1475e;
+}
+.apart{
+  color: #f5b87a;
+}
+
+.photo{
+  max-width: 290px;
+}
+
+.btn-primary{
+    color: #FFF;
+    background-color: #b1475e;
+    border-color: #b1475e;
+    font-family: Arvo;
+}
+.btn-primary:hover, .btn-primary:active {
+  font-family: Arvo;
+  color: #413E4A;
+    background-color: #f5b87a;
+    border-color: #f5b87a;
+}
+
+@media screen and (max-width: 1553px) {
+    body {
+        zoom:75%;
+        -moz-transform: 75%;
+        -moz-transform-origin: 0 0;
+    }
+}

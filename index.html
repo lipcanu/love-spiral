@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<!-- Latest compiled and minified D3JS -->
+  <script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+  <script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+  <script src="http://d3js.org/topojson.v1.min.js"></script>
+  <!-- font -->
+  <link href='https://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+  <!-- my css -->
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body> 
+<div class="container-fluid">
+<!-- <h1>Fuck long distance, we're having the time of our lives</h1> -->
+<div class="day col-md-2 col-md-offset-5 col-xs-6 col-xs-offset-3"><span></span></div>
+<div class="about"><a href="about.html">About</a></div>
+  <div id="chart" class="col-md-6"></div>
+  <div id="map" class="col-md-6">
+    
+  </div>
+  <div class="col-md-6 extraCharts">
+    <div id="pieChart" class="col-md-6">
+      <h2><span class="together">Days together</span> vs <span class="apart">Days apart</span></h2>
+  
+    </div> 
+    <div id="barChart"  class="col-md-6">
+      <h2><span class="together">Max days together</span> vs <span class="apart">Max days apart</span></h2>
+    </div>
+    <div class="citiesNo col-md-6"><h1><span></span> cities visited together</h1></div>
+  </div>
+  
+  <div class="col-md-6">
+      <img src="pics/manolo.png" class="col-md-4 col-md-offset-2 photo" alt="manolo">
+      <img src="pics/diana.png" class="col-md-4 col-md-offset-2 photo" alt="diana">
+      
+  </div>
+  <script type="text/javascript" src="js/map.js"></script>
+  <script type="text/javascript" src="js/spiral.js"></script>
+  <script type="text/javascript" src="js/graphs.js"></script>
+  
+
+  <script type="text/javascript">
+    var dataset;
+    var physicallyTogether = 0;
+    var citiesVisited = [];
+    var maxTimeTogether = 0;
+    var maxTimeApart =0;
+
+//Easy colors accessible via a 10-step ordinal scale
+var color = d3.scale.ordinal()
+    .range(["#b1475e", "#f5cba0"]);
+
+    d3.json("data/data_days.json", function(data) {
+
+      var spiral2 = new Spiral('custom-path')
+      spiral2.setParam('numberOfPoints', 1097);
+      spiral2.setParam('period', 366);
+      spiral2.setParam('svgHeight', 650);
+      spiral2.setParam('svgWidth', 650);
+      spiral2.setParam('spacing', 14);
+      spiral2.setParam('lineWidth', 80);
+      spiral2.setParam('tickMarkLabels', ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]);
+      spiral2.setParam('data', data);
+      spiral2.render();
+
+      var lastItem = [];
+      var timeTogether = 0;
+      var timeApart =0;
+      data.forEach(function(item){
+        if(item[2]==item[3]){
+          physicallyTogether++;
+          if( !(citiesVisited.indexOf(item[2]) > -1)) {
+            citiesVisited.push(item[2]);
+          }
+        }
+       
+        
+        if(lastItem.length == 0){
+          timeTogether++; 
+
+          }else if((lastItem[2]==lastItem[3])&&(item[2]==item[3])){
+          timeTogether++;
+        }else if ((lastItem[2]==lastItem[3])&&(item[2]!=item[3])){
+          if(timeTogether>maxTimeTogether) 
+            { 
+              maxTimeTogether = timeTogether;
+            }
+
+             timeApart = 0;
+        } else if ((lastItem[2]!=lastItem[3])&&(item[2]==item[3])) {
+          if(timeApart>maxTimeApart) 
+            { 
+              maxTimeApart = timeApart;
+            }
+          timeTogether=0;
+        }if((lastItem[2]!=lastItem[3])&&(item[2]!=item[3])){
+          timeApart++;
+        }
+
+
+        lastItem = item;
+      });
+      drawGraphs(physicallyTogether, data.length);
+      drawBars(maxTimeApart, maxTimeTogether);
+      citiesText(citiesVisited.length);
+      console.log(physicallyTogether);
+      console.log(citiesVisited);
+      console.log(maxTimeApart);
+      console.log(maxTimeTogether);
+    });
+
+  </script>
+  </div>
+</body>
+
