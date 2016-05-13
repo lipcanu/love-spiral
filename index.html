@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 
 <head>
+<meta charset="UTF-8">
+<meta name="description" content="A spiral visualization of a long distance relationship">
+<meta name="keywords" content="infovis, visualization, spiral, relationship">
+<meta name="author" content="Diana Lipcanu">
+<title>Love Spiral</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
 <!-- Latest compiled and minified D3JS -->
-  <script type="text/javascript" src="lib/d3.v3.js"></script>
-  <script type="text/javascript" src="lib/d3.geo.projection.v0.min.js"></script>
-  <script type="text/javascript" src="lib/topojson.v1.min.js"></script>
-  <!-- font -->
-  <link href='https://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
-  <!-- my css -->
-  <link rel="stylesheet" type="text/css" href="css/main.css">
+
+<script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+<script src="http://d3js.org/d3.geo.projection.v0.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<!-- font -->
+<link href='https://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
+<!-- my css -->
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="icon"  type="image/png"  href="favicon.jpg">
+
 </head>
 <body> 
 <div class="container-fluid">
-<!-- <h1>Fuck long distance, we're having the time of our lives</h1> -->
+
 <div class="day col-md-2 col-md-offset-5 col-xs-6 col-xs-offset-3"><span></span></div>
 <div class="about"><a href="about.html">About</a></div>
   <div id="chart" class="col-md-6"></div>
@@ -38,14 +44,13 @@
   
   <div class="col-md-6">
       <img src="pics/manolo.png" class="col-md-4 col-md-offset-2 photo" alt="manolo">
-      <img src="pics/diana.png" class="col-md-4 col-md-offset-2 photo" alt="diana">
-      
+      <img src="pics/diana.png" class="col-md-4 col-md-offset-2 photo" alt="diana"> 
   </div>
+  
+
   <script type="text/javascript" src="js/map.js"></script>
   <script type="text/javascript" src="js/spiral.js"></script>
   <script type="text/javascript" src="js/graphs.js"></script>
-  
-
   <script type="text/javascript">
     var dataset;
     var physicallyTogether = 0;
@@ -53,8 +58,8 @@
     var maxTimeTogether = 0;
     var maxTimeApart =0;
 
-//Easy colors accessible via a 10-step ordinal scale
-var color = d3.scale.ordinal()
+
+  var color = d3.scale.ordinal()
     .range(["#b1475e", "#f5cba0"]);
 
     d3.json("data/data_days.json", function(data) {
@@ -110,10 +115,7 @@ var color = d3.scale.ordinal()
       drawGraphs(physicallyTogether, data.length);
       drawBars(maxTimeApart, maxTimeTogether);
       citiesText(citiesVisited.length);
-      console.log(physicallyTogether);
-      console.log(citiesVisited);
-      console.log(maxTimeApart);
-      console.log(maxTimeTogether);
+
     });
 
   </script>

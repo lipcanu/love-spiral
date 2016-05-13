@@ -38,7 +38,7 @@ d3.json("data/eu.topojson", function(data) {
 //cities
 d3.csv("data/cities.csv", function(data) {
   citiesData = data;
-  
+//shwo cities as circles
  //  citiesGroup.selectAll("circle")
  //  .data(data)
  //  .enter()
@@ -52,6 +52,7 @@ d3.csv("data/cities.csv", function(data) {
  //  .attr("r", 5)
  //  .style("fill", "yellow")
  //  .style("opacity", 0.75);
+
 //city labels
   labels.selectAll(".city-label")
   .data(data)

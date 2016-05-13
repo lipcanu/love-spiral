@@ -1,3 +1,4 @@
+//defines the spiral 
 function Spiral(graphType) {
   this.option = {
     graphType: graphType || "points",
@@ -23,7 +24,7 @@ function Spiral(graphType) {
     colorMode: 'opacity'
   }
 }; 
-
+//methods on the spiral
 Spiral.prototype.cartesian = function(radius, angle, size) {
   var classObj = this;
   var option = classObj.option;
@@ -76,7 +77,8 @@ Spiral.prototype.render = function() {
   svg.append("g")
   .classed("love-spiral", true)
   .attr("transform", "translate(" + option.margin.left + "," + option.margin.top + ")");
-var timeformat = d3.time.format("%d %B %Y")
+
+//create the spiral svg
   svg.selectAll("g").selectAll("path")
   .data(option.data)
   .enter().append("path")
@@ -94,7 +96,7 @@ var timeformat = d3.time.format("%d %B %Y")
       })
       .duration(400)
       .style("opacity","1");
-// .attr("class", function(d) { return "day " + d[0]; })
+
 // Unique id so that the text path defs are unique - is there a better way to do this?
   var id = d3.selectAll(".love-spiral")[0].length;
 //Radial label
@@ -222,7 +224,7 @@ Spiral.prototype.findPeriod = function() {
 };
 
 function theta(t, period) {
-  return  Math.PI / 2+ (2*Math.PI / (period) *  t);
+  return   Math.PI/2 + (2*Math.PI / period *  t);
 };
 
 function startAngle(t, period) {
@@ -247,14 +249,14 @@ function colorSelector(datum, opacityFlag) {
  }
 }
 
-
+//move both circles
 function moveLovebirds(day, cityManolo, cityDiana){
   d3.select(".day span").text(day); 
-  // console.log(citiesData.length);
+ 
   d3.selectAll(".city-label")
           .classed("notVisible", true);
   for(i=0;i<=citiesData.length;i++){
-    // console.log(day, cityManolo, cityDiana, citiesData[i].city);
+
     if(citiesData[i].city == cityDiana){
      movePerson("diana", citiesData[i].lon, citiesData[i].lat, 5, citiesData[i].city);
 
@@ -265,7 +267,7 @@ function moveLovebirds(day, cityManolo, cityDiana){
   }//end for
   
 }
-
+//move one person
 function movePerson(person, lon, lat, space, city){
    d3.selectAll("." + person)
        .transition()
