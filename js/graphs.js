@@ -6,7 +6,6 @@ var w = 200;
 var h = 200;
 
 var dataset = [ physicallyTogether, totalTogether-physicallyTogether ];
-console.log(dataset);
 
 var outerRadius = w / 2;
 var innerRadius = w / 3;
@@ -15,7 +14,6 @@ var arc = d3.svg.arc()
         .outerRadius(outerRadius);
 
 var pie = d3.layout.pie();
-
 
 //Create SVG element
 var svg = d3.select("#pieChart")
