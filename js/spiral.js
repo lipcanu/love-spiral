@@ -5,9 +5,9 @@ function Spiral(graphType) {
     numberOfPoints: null,
     period: null,
     margin: {
-      top: 70,
+      top: 30,
       right: 10,
-      bottom: -30,
+      bottom: 30,
       left: 10
     },
     svgHeight: 0,
@@ -106,7 +106,7 @@ Spiral.prototype.render = function() {
   labels = svg.append("g")
       .classed("labels", true)
       .classed("segment", true)
-      .attr("transform", "translate(330,385)");
+      .attr("transform", "translate(330,345)");
 
   labels.append("def")
       .append("path")
